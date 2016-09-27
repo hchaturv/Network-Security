@@ -27,7 +27,7 @@ The playground network, as mentioned earlier, came with a basic network out of t
 3. Ensure message integrity 
 
 
-** Key additions by PTCL Layer:
+**Key additions by PTCL Layer:**
 
 * Added state to originally stateless connections by suggesting a three way handshake which would set up initial state variables. Also added a two state final completion state machine to initiate tear down of the connection.
 
@@ -51,7 +51,7 @@ The playground network, as mentioned earlier, came with a basic network out of t
 
 
 
-** Key additions by PSST Layer: 
+**Key additions by PSST Layer:**
 
 * Encryption of messages to achieve message confidentiality (AES-CTR Mode). Like PTCL, PSST also had a state machine for handshake between the two conversing parties. The handshake would allow the two parties to establish each other's identities and by the end of the handshake, to come up with session keys that would be used to encrypt/decrypt data during the conversation. 
 
