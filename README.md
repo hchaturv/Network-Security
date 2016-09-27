@@ -1,7 +1,7 @@
 # Network-Security
 Reliable &amp; Secure Layer over a make believe TCP Overlay network.
 
-*This is a class project that I worked on in my Network Security Class.
+*This is a class project that I worked on in my Network Security Class.*
 
 
 The goal of the project was to create a Reliable and Secure layer (much like TCP & SSL/TLS) on a make believe TCP Overlay network. The network was modelled on a peer to peer communication model with a central server, The Chaperone. The Chaperone would manage the routing and will try to simulate a real network. This infrastructure was provided to us before hand and was called the Playground Network. 
@@ -17,7 +17,7 @@ The playground network, as mentioned earlier, came with a basic network out of t
 
 
 
-###Aims of PTCL were to-
+### Aims of PTCL were to-
 
 
 1. Ensure data delivery
@@ -27,7 +27,7 @@ The playground network, as mentioned earlier, came with a basic network out of t
 3. Ensure message integrity 
 
 
-**Key additions by PTCL Layer: 
+** Key additions by PTCL Layer: **
 
 * Added state to originally stateless connections by suggesting a three way handshake which would set up initial state variables. Also added a two state final completion state machine to initiate tear down of the connection.
 
@@ -41,7 +41,7 @@ The playground network, as mentioned earlier, came with a basic network out of t
 
 
 
-###Aims of PSST were to standardize ways to achieve-
+### Aims of PSST were to standardize ways to achieve-
 
 1. Confidentiality
 
@@ -51,7 +51,7 @@ The playground network, as mentioned earlier, came with a basic network out of t
 
 
 
-**Key additions by PSST Layer: 
+** Key additions by PSST Layer: ** 
 
 * Encryption of messages to achieve message confidentiality (AES-CTR Mode). Like PTCL, PSST also had a state machine for handshake between the two conversing parties. The handshake would allow the two parties to establish each other's identities and by the end of the handshake, to come up with session keys that would be used to encrypt/decrypt data during the conversation. 
 
