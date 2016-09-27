@@ -1,0 +1,625 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en"><head><title>Playground Secure Layer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="Playground Secure Layer">
+<meta name="keywords" content="Secure Delivery, Authentication, Transmission Control">
+<meta name="generator" content="xml2rfc v1.35dev (http://xml2rfc.ietf.org/)">
+<style type='text/css'><!--
+        body {
+                font-family: verdana, charcoal, helvetica, arial, sans-serif;
+                font-size: small; color: #000; background-color: #FFF;
+                margin: 2em;
+        }
+        h1, h2, h3, h4, h5, h6 {
+                font-family: helvetica, monaco, "MS Sans Serif", arial, sans-serif;
+                font-weight: bold; font-style: normal;
+        }
+        h1 { color: #900; background-color: transparent; text-align: right; }
+        h3 { color: #333; background-color: transparent; }
+
+        td.RFCbug {
+                font-size: x-small; text-decoration: none;
+                width: 30px; height: 30px; padding-top: 2px;
+                text-align: justify; vertical-align: middle;
+                background-color: #000;
+        }
+        td.RFCbug span.RFC {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: bold; color: #666;
+        }
+        td.RFCbug span.hotText {
+                font-family: charcoal, monaco, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: normal; text-align: center; color: #FFF;
+        }
+
+        table.TOCbug { width: 30px; height: 15px; }
+        td.TOCbug {
+                text-align: center; width: 30px; height: 15px;
+                color: #FFF; background-color: #900;
+        }
+        td.TOCbug a {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, sans-serif;
+                font-weight: bold; font-size: x-small; text-decoration: none;
+                color: #FFF; background-color: transparent;
+        }
+
+        td.header {
+                font-family: arial, helvetica, sans-serif; font-size: x-small;
+                vertical-align: top; width: 33%;
+                color: #FFF; background-color: #666;
+        }
+        td.author { font-weight: bold; font-size: x-small; margin-left: 4em; }
+        td.author-text { font-size: x-small; }
+
+        /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+        a.info {
+                /* This is the key. */
+                position: relative;
+                z-index: 24;
+                text-decoration: none;
+        }
+        a.info:hover {
+                z-index: 25;
+                color: #FFF; background-color: #900;
+        }
+        a.info span { display: none; }
+        a.info:hover span.info {
+                /* The span will display just on :hover state. */
+                display: block;
+                position: absolute;
+                font-size: smaller;
+                top: 2em; left: -5em; width: 15em;
+                padding: 2px; border: 1px solid #333;
+                color: #900; background-color: #EEE;
+                text-align: left;
+        }
+
+        a { font-weight: bold; }
+        a:link    { color: #900; background-color: transparent; }
+        a:visited { color: #633; background-color: transparent; }
+        a:active  { color: #633; background-color: transparent; }
+
+        p { margin-left: 2em; margin-right: 2em; }
+        p.copyright { font-size: x-small; }
+        p.toc { font-size: small; font-weight: bold; margin-left: 3em; }
+        table.toc { margin: 0 0 0 3em; padding: 0; border: 0; vertical-align: text-top; }
+        td.toc { font-size: small; font-weight: bold; vertical-align: text-top; }
+
+        ol.text { margin-left: 2em; margin-right: 2em; }
+        ul.text { margin-left: 2em; margin-right: 2em; }
+        li      { margin-left: 3em; }
+
+        /* RFC-2629 <spanx>s and <artwork>s. */
+        em     { font-style: italic; }
+        strong { font-weight: bold; }
+        dfn    { font-weight: bold; font-style: normal; }
+        cite   { font-weight: normal; font-style: normal; }
+        tt     { color: #036; }
+        tt, pre, pre dfn, pre em, pre cite, pre span {
+                font-family: "Courier New", Courier, monospace; font-size: small;
+        }
+        pre {
+                text-align: left; padding: 4px;
+                color: #000; background-color: #CCC;
+        }
+        pre dfn  { color: #900; }
+        pre em   { color: #66F; background-color: #FFC; font-weight: normal; }
+        pre .key { color: #33C; font-weight: bold; }
+        pre .id  { color: #900; }
+        pre .str { color: #000; background-color: #CFF; }
+        pre .val { color: #066; }
+        pre .rep { color: #909; }
+        pre .oth { color: #000; background-color: #FCF; }
+        pre .err { background-color: #FCC; }
+
+        /* RFC-2629 <texttable>s. */
+        table.all, table.full, table.headers, table.none {
+                font-size: small; text-align: center; border-width: 2px;
+                vertical-align: top; border-collapse: collapse;
+        }
+        table.all, table.full { border-style: solid; border-color: black; }
+        table.headers, table.none { border-style: none; }
+        th {
+                font-weight: bold; border-color: black;
+                border-width: 2px 2px 3px 2px;
+        }
+        table.all th, table.full th { border-style: solid; }
+        table.headers th { border-style: none none solid none; }
+        table.none th { border-style: none; }
+        table.all td {
+                border-style: solid; border-color: #333;
+                border-width: 1px 2px;
+        }
+        table.full td, table.headers td, table.none td { border-style: none; }
+
+        hr { height: 1px; }
+        hr.insert {
+                width: 80%; border-style: none; border-width: 0;
+                color: #CCC; background-color: #CCC;
+        }
+--></style>
+</head>
+<body>
+
+<table border="0" cellpadding="0" cellspacing="2" width="30" align="right">
+    <tr>
+        <td class="RFCbug">
+                <span class="RFC">&nbsp;RFC&nbsp;</span><br /><span class="hotText">&nbsp;2&nbsp;</span>
+        </td>
+    </tr>
+    <tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a><br /></td></tr>
+</table>
+<table summary="layout" width="66%" border="0" cellpadding="0" cellspacing="0"><tr><td><table summary="layout" width="100%" border="0" cellpadding="2" cellspacing="1">
+<tr><td class="header">Network Working Group</td><td class="header">S. Nielson, Ed.</td></tr>
+<tr><td class="header">Request for Comments: 2</td><td class="header">JHU Network Security Spring 2016</td></tr>
+<tr><td class="header">Category: Standards Track</td><td class="header">April 2016</td></tr>
+</table></td></tr></table>
+<h1><br />Playground Secure Layer</h1>
+
+<h3>Abstract</h3>
+
+<p>The PLAYGROUND (Poly-Localized Algorithmic Yields
+     Generated Remotely On Unused Network Devices) system is
+     designed to give students and researchers a sandbox in which to
+     develop network security experiments. This standard defines
+     a protocol for secure message delivery called Playground Super Secure
+     Transport, or PSST. PSST is designed to run over PTCL, providing
+     guarantees of mutual authentication and confidentiality on top of 
+     the reliability guarantees given by PTCL.
+</p>
+<h3>Status of this Memo</h3>
+<p>
+This document specifies a Playgrounds standards track protocol for the Playground
+Experiment, and requests discussion and suggestions for improvements.
+Distribution of this memo is unlimited.</p>
+
+<h3>Copyright Notice</h3>
+<p>
+Copyright &copy; Seth James Nielson (2016). All Rights Reserved.</p>
+<a name="toc"></a><hr />
+
+<table border="0" cellpadding="0" cellspacing="2" width="30" align="right">
+    <tr>
+        <td class="RFCbug">
+                <span class="RFC">&nbsp;RFC&nbsp;</span><br /><span class="hotText">&nbsp;2&nbsp;</span>
+        </td>
+    </tr>
+    <tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a><br /></td></tr>
+</table>
+<h3>Table of Contents</h3>
+<p class="toc">
+<a href="#anchor1">1.</a>&nbsp;
+Introduction<br />
+<a href="#anchor2">2.</a>&nbsp;
+Requirements Language<br />
+<a href="#anchor3">3.</a>&nbsp;
+Terminology<br />
+<a href="#anchor4">4.</a>&nbsp;
+Message Definitions<br />
+<a href="#anchor5">5.</a>&nbsp;
+State Machine<br />
+<a href="#anchor6">6.</a>&nbsp;
+Handshake Specifications<br />
+<a href="#anchor7">7.</a>&nbsp;
+Data Transmission<br />
+<a href="#anchor8">8.</a>&nbsp;
+Algorithms<br />
+<a href="#anchor9">9.</a>&nbsp;
+Teardown<br />
+<a href="#anchor10">10.</a>&nbsp;
+Assumptions<br />
+<a href="#anchor11">11.</a>&nbsp;
+Security Considerations<br />
+<a href="#rfc.references1">12.</a>&nbsp;
+Normative References<br />
+<a href="#rfc.authors">&#167;</a>&nbsp;
+Author's Address<br />
+<a href="#rfc.copyright">&#167;</a>&nbsp;
+Intellectual Property and Copyright Statements<br />
+</p>
+<br clear="all" />
+
+<a name="anchor1"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.1"></a><h3>1.&nbsp;
+Introduction</h3>
+
+<p>The PLAYGROUND experiment often will have sensitive traffic traveling
+     throughout the network. It is of utmost importance to ensure that
+     parties can speak to one another securely and prevent both passive 
+     eavesdropping and active attacks against their communications.
+</p>
+<p>This standard defines a new protocol that runs on top of PTCL called
+     PSST that provides the following guarantees:
+</p>
+<p></p>
+<ul class="text">
+<li>Confidentiality
+</li>
+<li>Authentication
+</li>
+<li>Message Integrity
+</li>
+</ul>
+
+<p>Much like PTCL, PSST, revolves around a statemachine.  The session
+     begins with a handshake, encapsulates bi-directional data transfer between
+     the client and server and ends with a teardown routine.  Messages within
+     the session are sent with a MAC and encrypted in order to ensure
+     confidentiality and integrity.  The handshake involves a mutual
+     authentication process that guarantees authentication to both parties.
+</p>
+<p>This document defines both the state machine of the protocol and the
+     message formats sent between two PSST peers.
+</p>
+<a name="anchor2"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.2"></a><h3>2.&nbsp;
+Requirements Language</h3>
+
+<p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+       "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+       document are to be interpreted as described in <a class='info' href='#RFC2119'>RFC 2119<span> (</span><span class='info'>Bradner, S., &ldquo;Key words for use in RFCs to Indicate Requirement Levels,&rdquo; March&nbsp;1997.</span><span>)</span></a> [RFC2119].
+</p>
+<a name="anchor3"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3"></a><h3>3.&nbsp;
+Terminology</h3>
+
+<p></p>
+<ul class="text">
+<li>Client: Node initiating connection to another node.
+</li>
+<li>Server: Node listening for incoming connection or connections on a C2C port.
+</li>
+<li>Peer: The other node in the connection.
+</li>
+<li>Sending data: transmitting DATA packets to the peer.
+</li>
+<li>Delivering data: returning data (received from the network) to the application
+          layer.
+</li>
+<li>Handshake: Initialization routine used to start a PSST session between two peers.
+</li>
+<li>Teardown: Ending routine user to end a PSST session between two peers.
+</li>
+<li>Session: A single connction between Client and Server. Begins with a
+            Handshake and ends with a Teardown.
+</li>
+<li>Session Abort: Termination procedure for when PSST guarantees cannot be met.
+</li>
+<li>Cert: A certificate chain that allows one party to authenticate the other. Certificate
+                chains should be laid out [leaf, median cert, median cert, ..., root].
+</li>
+</ul>
+
+<a name="anchor4"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4"></a><h3>4.&nbsp;
+Message Definitions</h3>
+
+<p>Fill in text explaining all the pieces
+</p>
+<p>
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+class PSSTHandshakeMessage(MessageDefinition):
+  PLAYGROUND_IDENTIFIER = "playground.base.PSSTHandshakeMessage"
+  MESSAGE_VERSION = "1.0"
+
+  BODY = [
+    ("MessageType", STRING),
+    ("Cert_Chain", LIST(STRING)),
+    ("Key", STRING),
+    ("Nonce_S", STRING),
+    ("Nonce_C", STRING),
+    ("Data", STRING)]
+  ]
+</pre></div>
+<p>Message Field Explanations
+</p>
+<p></p>
+<ul class="text">
+<li>MessageType: This is a string that denotes the type of message this message is. 
+</li>
+<li>Cert: This is the certification that the sender of the message is using to authenticate
+             itself to the receiver. In the case of a client to server message, this is the 
+             clients certificate and vice-versa.
+</li>
+<li>Key: This is the Key that the server will send the client at the end of the Handshake
+            This key MUST be used to encrypt/decrypt all messages exchanged during the data
+            transfer after the Handshake. This MUST be 32 bytes long.
+</li>
+<li>Nonce_S: This is a nonce the server uses to challenge the client. Both Nonces MUST be
+                16 bytes long.
+</li>
+<li>Nonce_C: This is a nonce the client uses to challenge the server. Both Nonces MUST be
+                16 bytes long.
+</li>
+<li>Data: This is any other data that is needed to validate the certs, it is implementation
+             dependent based upon what method is being used to validate certificates.
+</li>
+</ul>
+
+<p>What to fill out when:
+</p>
+<p></p>
+<ul class="text">
+<li>MessageType is one of "HELLO", "CHALLENGE", "CHALLENGE/RESPONSE", "RESPONSE"
+</li>
+<li>If MessageType is "HELLO" then all fields besides "Cert_Chain" SHOULD
+       be zeroed.
+</li>
+<li>If MessageType is "CHALLENGE" then "Key" SHOULD be zeroed.
+</li>
+<li>If MessageType is "CHALLENGE/RESPONSE" then "Cert_Chain" SHOULD be zeroed.
+</li>
+<li>If MessageType is "RESPONSE" then "Cert_Chain" and "Nonce_S" SHOULD be zeroed.
+</li>
+</ul>
+
+<p>
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+class PSSTDataMessage(MessageDefinition):
+  PLAYGROUND_IDENTIFIER = "playground.base.PSSTDataMessage"
+  MESSAGE_VERSION = "1.0"
+
+  BODY = [
+    ("MessageType", STRING),
+    ("MAC", String),
+    ("Data", STRING)]
+  ]
+</pre></div>
+<p>Here is the workhorse of PSST that is used to transfer data from one peer to the 
+      other.  The fields are as follows:
+</p>
+<p></p>
+<ul class="text">
+<li>MessageType: MUST be set to "DATA", "FIN" or "FINACK".
+        It is used for differentiating between 1) data messages and 2) Teardown.
+</li>
+<li>MAC: This is a MAC of the encrypted data. In other words, the data "String"
+        should be encrypted, and a MAC should be taken of the message type concatenated
+        with that encrypted string. If this is not a "DATA" message, then Data SHOULD be
+        zeroed.
+</li>
+<li>Data: This is the data being sent from one peer to the other, it should
+        be encrypted using the Key estabished during the Handshake. If this is
+        not a "DATA" message then Data SHOULD be zeroed.
+</li>
+</ul>
+
+<a name="anchor5"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5"></a><h3>5.&nbsp;
+State Machine</h3>
+
+<p>
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+Handshake
+
+Client State Machine:
+State        Event                Action                      Next State
+------------------------------------------------------------------------
+CONNECTING   ---                  Send HELLO                  CONNECTING
+CONNECTING   CHALLENGE received   Send CHALLENGE/RESPONSE     CONNECTING
+CONNECTING   RESPONSE received    ---                         SENDRECV
+
+
+Server State Machine:
+State        Event                         Action             Next State
+------------------------------------------------------------------------
+CONNECTING   RECEIVE HELLO                 Send CHALLENGE     CONNECTING
+CONNECTING   CHALLENGE/RESPONSE received   Send RESPONSE      SENDRECV
+</pre></div>
+<a name="anchor6"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6"></a><h3>6.&nbsp;
+Handshake Specifications</h3>
+
+<p>There are 4 messages sent as part of PSST's Handshake, each one
+        with different contents.  At the start of the Handshake the client
+        sends the server a (1)HELLO message containing the client's cert.  The
+        server responds to this message with a (2)CHALLENGE message with its own
+        cert and a nonce encrypted using the client's cert.  The client, upon
+        receiving this message, decrypts the nonce and responds with a (3)
+        CHALLENGE/RESPONSE of that nonce and a new nonce (a challenge for the
+        server) encrypted using the server's cert.  The server, upon receiving
+        this message decrypts it and verifies that the first nonce it received
+        is the same nonce as the one it originally sent the client. It responds
+        to the client with a (4) RESPONSE message containing the nonce the 
+        client generated and a key to be used in the Steady State communication.
+</p>
+<p>In crypto language this protocol is:
+</p>
+<p>HELLO              C -> S: Cert_C
+</p>
+<p>CHALLENGE          S -> C: Cert_S,(N_s)_Cert_C
+</p>
+<p>CHALLENGE/RESPONSE C -> S: (N_s, N_c, K_c)_Cert_S
+</p>
+<p>RESPONSE           S -> C: (N_c, K_s)_Cert_C
+</p>
+<p>Unlike PTCL, PSST's handshake is an integral part of the guarantees it
+        provides.  Within the handshake both parties authenticate themselves to
+        one another using challenge/response mechanisms.  The server first
+        challenges the client by encrypting a nonce using the client's cert.
+        The client responds to this challenge and in turn challenges the server,
+        it also sends over the key it will use during data transmission.
+        The server responds to this challenge and sends the client the key that
+        will be used for steady state data transfer after the handshake. If at
+        any point either peer fails the challenge/response the other IMMEDIATELY
+        ends the protocol. Note: if either peer has any reason to suspect the
+        other is fradulent it ends the protocol.
+</p>
+<p>The client and server will also both have to verify that the cert's
+        provided by their peers are valid certs. PSST is not concerned with
+        how this is done, only that it is done.
+</p>
+<a name="anchor7"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7"></a><h3>7.&nbsp;
+Data Transmission</h3>
+
+<p>During steady state sending, the client and server both use the keys that
+        were exchanged in the handshake to encrypt and decrypt messages. Encryption
+        is done using AES in counter mode, with the nonces acting as IVs - N_s is
+        the server's IV and N_c is the client's IV.  IVs should be increased by one
+        after every block is encrypted.  The keys will be the keys that were exchanged
+        during the handshake, with the server using K_s to send data to the client
+        and the client using K_c to send data to the server.
+</p>
+<p>After being encrypted the data should be MAC'd using the same key as
+        was used for encryption, this MAC should be attached to the message
+        in the MAC field.
+</p>
+<p>In pseudo code this looks like:
+</p>
+<p>cyphertext = encrypt(plaintext, IV, key)
+</p>
+<p>increment(IV)
+</p>
+<p>data_mac = MAC(cyphertext, key)
+</p>
+<p>message.data = cyphertext
+</p>
+<p>message.mac = data_mac
+</p>
+<p>The receiver will do the reserve of this in order to decrypt the message.
+        It will compare the mac to the cyphertext - if it finds a problem here it
+        will silenty drop the message.  Otherwise if the MAC checks out it will 
+        decrypt the data of the message and pass it to the layer above it.
+</p>
+<a name="anchor8"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.8"></a><h3>8.&nbsp;
+Algorithms</h3>
+
+<p>For data encryption PSST uses AES256-CTR. The key and IV (nonce) sizes must
+        be what they need to be for AES256, that is, the key must be 32 bytes and
+        the IV must be 16 bytes.
+</p>
+<p>For MAC PSST uses HMAC-SHA256
+</p>
+<a name="anchor9"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.9"></a><h3>9.&nbsp;
+Teardown</h3>
+
+<p>Once one party wants to end the connection it sends a FIN message and
+        waits to receive a FINACK.  If a peer receives a FIN it sends back a 
+        FINACK and then ends the connection.
+</p>
+<p>This means that whenenever one peer wishes to end a connection and
+        has informed the other peer of its desire to end a connection that
+        connection should end immediately and no more data should be transmitted
+        between the peers.
+</p>
+<a name="anchor10"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.10"></a><h3>10.&nbsp;
+Assumptions</h3>
+
+<p>This protocol makes some fundamental assumptions about the environment it
+        is operating in.
+</p>
+<p>First, it assumes that the peers have some reliable means
+        of communcating, that is, any messages sent by a peer are received in order
+        without errors by the other peer.
+</p>
+<p>Second, it assumes the peers have some method of validating each other's certs.
+        PSST does not specify anything about how this validation is done, but in order
+        for PSST's guarantees to be preserved some method must exist.
+</p>
+<a name="anchor11"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.11"></a><h3>11.&nbsp;
+Security Considerations</h3>
+
+<p>TODO - talk about different kinds of attacks and how they are mitigated by this
+        protocol and potentially attacks that aren't mitigated. (i.e. infinite
+        computing power working over saved messages to decrpy)
+</p>
+<p>This protocol fights against passive attacks because it makes sure that messages
+        no longer travel in clear text. Messages cannot be modified mid-transport without
+        alerting the receiving party which in turn closes the connection. However, this
+        does not mean that an attacker is stopped from using infinite computing power 
+        over saved messages to decrypt them. 
+</p>
+<a name="rfc.references1"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>12.&nbsp;Normative References</h3>
+<table width="99%" border="0">
+<tr><td class="author-text" valign="top"><a name="RFC2119">[RFC2119]</a></td>
+<td class="author-text">Bradner, S., &ldquo;<a href="http://www.rfc-editor.org/info/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>,&rdquo; BCP&nbsp;14, RFC&nbsp;2119, DOI&nbsp;10.17487/RFC2119, March&nbsp;1997.</td></tr>
+</table>
+
+<a name="rfc.authors"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>Author's Address</h3>
+<table width="99%" border="0" cellpadding="0" cellspacing="0">
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Seth Nielson (editor)</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">JHU Network Security Spring 2016</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">JHU 160 Malone Hall/3400 North Charles St.</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Baltimore, MD  21218</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">USA</td></tr>
+<tr><td class="author" align="right">Phone:&nbsp;</td>
+<td class="author-text">+1 410-497-7384</td></tr>
+<tr><td class="author" align="right">Email:&nbsp;</td>
+<td class="author-text"><a href="mailto:sethjn@gmail.com">sethjn@gmail.com</a></td></tr>
+</table>
+<a name="rfc.copyright"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>Full Copyright Statement</h3>
+<p class='copyright'>
+Copyright &copy; Seth James Nielson (2016). All Rights Reserved.</p>
+<p class='copyright'>
+This document and translations of it may be copied and furnished to
+others, and derivative works that comment on or otherwise explain it
+or assist in its implementation may be prepared, copied, published and
+distributed, in whole or in part, without restriction of any kind,
+provided that the above copyright notice and this paragraph are
+included on all such copies and derivative works. However, this
+document itself may not be modified in any way, such as by removing
+the copyright notice or references to the PLAYGROUND experiment or other
+associated organizations, except by explicit permission.</p>
+<p class='copyright'>
+The limited permissions granted above are perpetual and will not be
+revoked by SETH JAMES NIELSON or his successors or assigns.</p>
+<p class='copyright'>
+This document and the information contained herein is provided on an
+&ldquo;AS IS&rdquo; basis and SETH JAMES NIELSON and associated academic institutions
+DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.</p>
+<h3>Intellectual Property</h3>
+<p class='copyright'>
+The PLAYGROUND framework and student submissions for
+PLAYGROUND are intended to be free of any intellectual
+property conflicts. All submitting parties, especially students,
+are not allowed to submit source code, specifications, or 
+other components that are known to be protected by copyright,
+patents, or other IP mechanisms. Students submitting creative
+content grant shared rights and ownership of their content to
+the PLAYGROUND project. Specifically, any submission can be
+used in future educational settings including subsequent PLAYGROUND
+experiments.</p>
+<p class='copyright'>
+Any interested party is invited to bring to the experiment director's
+attention any copyrights, patents or patent applications, or
+other proprietary rights which may cover technology that may be
+currently in use without permission.</p>
+<p class='copyright'>
+It should be noted that these statements have not been reviewed
+by legal counsel. Moreover, the academic institutions at
+which PLAYGROUND experiments take place may have additional 
+or even conflicting copyright and intellectual property rules.
+Accordingly, concerned parties may need to contact their own lawyer
+and/or resources at their institution to understand the rights and
+limitations associated with code donated to a PLAYGROUND experiment.</p>
+</body></html>
